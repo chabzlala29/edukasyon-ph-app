@@ -11,4 +11,14 @@ class Teacher < ApplicationRecord
   def gender
     GENDERS[super || 0]
   end
+
+  def average_rating
+    ratings.average(:rating).round
+  rescue
+    0
+  end
+
+  def average_remaining_rating
+    5 - average_rating
+  end
 end
