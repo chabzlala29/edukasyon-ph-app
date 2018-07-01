@@ -1,0 +1,10 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %h3= @teacher.name
+    .modal-body
+      %p.text-muted= "School Graduated: " + @teacher.school_graduated
+      %p.text-muted= "Gender: " + @teacher.gender
+      %p= @teacher.major_accomplishments
+    .modal-footer
+      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel

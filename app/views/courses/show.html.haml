@@ -1,15 +1,21 @@
 .row
-  .col-lg-3
-    %h1.my-4= @course.name
-    .list-group
-      %a.list-group-item.active{:href => "#"} Category 1
-      %a.list-group-item{:href => "#"} Category 2
-      %a.list-group-item{:href => "#"} Category 3
-  .col-lg-9
+  .col-lg-4
+    %h5.text-muted Available Instructors
+
+    %ul.list-group.mb-3{ data: { spy: "affix", "offset-top": "197" }}
+      - @course.teachers.each do |teacher|
+        %li.list-group-item.d-flex.lh-condensed
+          %img.pr-2.float-left{ src: "http://via.placeholder.com/50x50" }
+
+          %div
+            %h6.my-0= link_to_modal teacher.name, [@course, teacher]
+            %small.text-muted= teacher.school_graduated
+            %small.text-muted= teacher.gender
+  .col-lg-8
     .card.mt-4
       %img.card-img-top.img-fluid{:alt => "", :src => "http://placehold.it/900x400"}/
       .card-body
-        %h3.card-title Product Name
+        %h3.card-title= @course.name
         %h4 $24.99
         %p.card-text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!
         %span.text-warning ★ ★ ★ ★ ☆

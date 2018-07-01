@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :courses, only: [:index, :show]
+  resources :courses, only: [:index, :show] do
+    resources :teachers, only: [:show], module: :courses
+  end
 
   namespace :admin do
     resources :courses, only: [:index, :edit, :new, :create, :update, :destroy]
