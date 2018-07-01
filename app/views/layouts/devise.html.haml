@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
+    %meta{:content => "Edukasyon App", :name => "description"}/
+    %meta{:content => "Charles Darwin Pobre", :name => "author"}/
+
+    %title EdukasyonApp
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'devise', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body.text-center
+    = yield
