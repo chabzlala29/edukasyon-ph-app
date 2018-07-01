@@ -1,17 +1,29 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-  .container
-    %a.navbar-brand{:href => "#"} Start Bootstrap
-    %button.navbar-toggler{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", :type => "button"}
-      %span.navbar-toggler-icon
-    #navbarResponsive.collapse.navbar-collapse
-      %ul.navbar-nav.ml-auto
-        %li.nav-item.active
-          %a.nav-link{:href => "#"}
-            Home
-            %span.sr-only (current)
-        %li.nav-item
-          %a.nav-link{:href => "#"} About
-        %li.nav-item
-          %a.nav-link{:href => "#"} Services
-        %li.nav-item
-          %a.nav-link{:href => "#"} Contact
+%header
+	#navbarHeader.bg-dark.collapse{:style => ""}
+		.container
+			.row
+				.col-sm-8.col-md-7.py-4
+					%h4.text-white Edukasyon Classes
+					%p.text-muted List of all available classes around the Campus. Search any course and see available professors/instructors and their reviews and ratings.
+				.col-sm-4.offset-md-1.py-4
+					%h4.text-white Contact
+					%ul.list-unstyled
+						%li
+							%a.text-white{:href => "#"} Follow on Twitter
+						%li
+							%a.text-white{:href => "#"} Like on Facebook
+						%li
+							%a.text-white{:href => "#"} Email me
+	.navbar.navbar-dark.bg-dark.box-shadow
+		.container.d-flex.justify-content-between
+			%a.navbar-brand.d-flex.align-items-center.mr-auto{:href => "#"}
+				%svg.mr-2{:fill => "none", :height => "20", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "20", :xmlns => "http://www.w3.org/2000/svg"}
+					%path{:d => "M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"}
+					%circle{:cx => "12", :cy => "13", :r => "4"}
+				%strong Edukasyon Classes
+			%form.form-inline.mt-2.mt-md-0.mr-2
+				%input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "text"}/
+				%button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search Class
+			%button.navbar-toggler.collapsed{"aria-controls" => "navbarHeader", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarHeader", "data-toggle" => "collapse", :type => "button"}
+				%span.navbar-toggler-icon
+
