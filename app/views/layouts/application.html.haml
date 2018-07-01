@@ -11,10 +11,10 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
+  %body.bg-light
     = render "layouts/navigation"
     %main{:role => "main"}
-      .py-5.bg-light
+      .py-5
         .container
           = yield
     = render "layouts/footer"

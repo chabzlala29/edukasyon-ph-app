@@ -1,26 +1,29 @@
-%form.form-inline.mt-2.mt-md-0.mr-2
+= search_form_for @q, url: [:admin, :courses], class: "form-inline mt-2 mt-md-0 mr-2" do |f|
   = link_to_modal "New Course", [:new, :admin, :course], class: "btn btn-outline-success mr-auto mr-2"
-  %input.form-control.mr-sm-2{:placeholder => "Search Class...", :type => "text"}/
+  = f.text_field :name_cont, class: "form-control mr-sm-2", placeholder: "Search Class..."
 %hr
 
-%table.table
-  %thead.thead-dark
-    %tr
-      %th{:scope => "col"} #
-      %th{:scope => "col"} Class Name
-      %th{:scope => "col"} Summary
-      %th{:scope => "col"} Room
-      %th{:scope => "col"} Room
-  %tbody
-    - @courses.each do |course|
+- if @courses.any?
+  %table.table
+    %thead.thead-dark
       %tr
-        %th{:scope => "row"}= "C#{course.id}"
-        %td= course.name
-        %td= course.summary
-        %td= course.room
-        %td
-          .btn-group
-            = link_to_modal "Edit", [:edit, :admin, course], class: "btn btn-outline-secondary btn-sm br-0"
-            = link_to "Delete", "/admin/courses/#{course.id}", class: "btn btn-outline-secondary btn-sm bl-0", method: :delete, data: { confirm: "Are you sure?" }
+        %th{:scope => "col"} #
+        %th{:scope => "col"} Class Name
+        %th{:scope => "col"} Summary
+        %th{:scope => "col"} Room
+        %th{:scope => "col"} Room
+    %tbody
+      - @courses.each do |course|
+        %tr
+          %th{:scope => "row"}= "C#{course.id}"
+          %td= course.name
+          %td= course.summary
+          %td= course.room
+          %td
+            .btn-group
+              = link_to_modal "Edit", [:edit, :admin, course], class: "btn btn-outline-secondary btn-sm br-0"
+              = link_to "Delete", "/admin/courses/#{course.id}", class: "btn btn-outline-secondary btn-sm bl-0", method: :delete, data: { confirm: "Are you sure?" }
 
-= paginate @courses
+  = paginate @courses
+- else
+  %p.text-muted No results found.

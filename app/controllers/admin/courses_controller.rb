@@ -3,7 +3,8 @@ module Admin
     before_action :set_course, only: [:edit, :update, :destroy]
 
     def index
-      @courses = Course.all.order(updated_at: :desc).page params[:page]
+      @q = Course.ransack(params[:q])
+      @courses = @q.result.order(updated_at: :desc).page params[:page]
     end
 
     def edit
