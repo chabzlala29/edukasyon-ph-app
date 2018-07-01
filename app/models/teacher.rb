@@ -4,6 +4,12 @@ class Teacher < ApplicationRecord
 
   GENDERS = %w( Male Female Transgender )
 
+  ransacker :name, formatter: proc {|v| v.downcase } do |parent|
+    Arel::Nodes::NamedFunction.new('LOWER',
+      [Arel::Nodes::NamedFunction.new('concat_ws', [Arel::Nodes.build_quoted(' '), parent.table[:firstname], parent.table[:lastname]])]
+    )
+  end
+
   def name
     [title, firstname, lastname].compact.join(" ")
   end

@@ -1,0 +1,7 @@
+var $form = $(".teacher-form").find("form");
+
+<% if @saved %>
+  window.location.href = "<%= admin_teachers_path %>";
+<% else %>
+  $form.renderFormErrors("teacher", <%= @teacher.errors.to_json.html_safe %>)
+<% end %>

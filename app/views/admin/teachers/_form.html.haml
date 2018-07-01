@@ -1,0 +1,41 @@
+.modal-dialog.teacher-form
+  .modal-content
+    .modal-header
+      %h5.modal-title
+        - if @teacher.persisted?
+          = "Update Teacher"
+        - else
+          = "New Teacher"
+      %button.close{"data-dismiss" => "modal", :type => "button"}
+        %span ×
+    .modal-body
+      = simple_form_for [:admin, @teacher], authenticity_token: true, remote: true do |f|
+        = f.input :title
+        = f.input :firstname
+        = f.input :lastname
+        = f.input :degree
+        = f.input :start_date
+        = f.input :school_graduated
+        = f.input :major_accomplishments
+        = f.submit "Save", class: "d-none"
+    .modal-footer
+      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+      %button.btn.btn-primary.save-teacher{:type => "button"} Save changes
+
+:javascript
+  App.Admin = {
+    $saveButton: $(".teacher-form").find(".save-teacher"),
+    $form: $(".teacher-form").find("form"),
+
+    initializeEvents: function(){
+      var that = this;
+
+      this.$saveButton.on("click", function(){
+        that.$form.find("input[type='submit']").click();
+      });
+    }
+  }
+
+  $(function(){
+    App.Admin.initializeEvents();
+  });

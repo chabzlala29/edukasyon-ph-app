@@ -1,5 +1,5 @@
 module Admin
-  class CoursesController < ApplicationController
+  class CoursesController < AdminController
     before_action :set_course, only: [:edit, :update, :destroy]
 
     def index

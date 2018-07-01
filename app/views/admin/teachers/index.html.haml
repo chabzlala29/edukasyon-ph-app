@@ -1,0 +1,31 @@
+= search_form_for @q, url: [:admin, :teachers], class: "form-inline mt-2 mt-md-0 mr-2" do |f|
+  = link_to_modal "New Teacher", [:new, :admin, :teacher], class: "btn btn-outline-success mr-auto mr-2"
+  = f.text_field :name_cont, class: "form-control mr-sm-2", placeholder: "Search Instructor..."
+%hr
+
+- if @teachers.any?
+  %table.table
+    %thead.thead-dark
+      %tr
+        %th{:scope => "col"} #
+        %th{:scope => "col"} Name
+        %th{:scope => "col"} Degree
+        %th{:scope => "col"} Start Date
+        %th{:scope => "col"} School Graduated
+        %th{:scope => "col"}
+    %tbody
+      - @teachers.each do |teacher|
+        %tr
+          %th{:scope => "row"}= "C#{teacher.id}"
+          %td= teacher.name
+          %td= teacher.degree
+          %td= teacher.start_date
+          %td= teacher.school_graduated
+          %td
+            .btn-group
+              = link_to_modal "Edit", [:edit, :admin, teacher], class: "btn btn-outline-secondary btn-sm br-0"
+              = link_to "Delete", "/admin/teachers/#{teacher.id}", class: "btn btn-outline-secondary btn-sm bl-0", method: :delete, data: { confirm: "Are you sure?" }
+
+  = paginate @teachers
+- else
+  %p.text-muted No results found.
