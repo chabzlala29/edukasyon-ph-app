@@ -1,4 +1,4 @@
-.modal-dialog
+.modal-dialog.ratings-content
   .modal-content
     .modal-header
       %h3= @teacher.name
@@ -6,5 +6,51 @@
       %p.text-muted= "School Graduated: " + @teacher.school_graduated
       %p.text-muted= "Gender: " + @teacher.gender
       %p= @teacher.major_accomplishments
+
+      - if current_user.can_rate?(@teacher)
+        .rating-form
+          %p
+            %span.mr-2 Please Rate:
+            - 5.times do |index|
+              %span.rate-char.text-warning{ "data-index": index } ☆
+          = form_tag [@course, @teacher, Rating.new], class: "form form-inline d-none", id: "rating-comment", remote: true do
+            .form-group.mb-3
+              = text_field_tag :comment, nil, class: "form-control mr-2", placeholder: "Comment...", required: true
+              = hidden_field_tag :rating
+              = submit_tag "Submit Comment", class: "btn btn-sm btn-primary"
+
+      .user-ratings
+        = render "user_ratings", ratings: @ratings
     .modal-footer
       %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+
+:javascript
+  App.Teacher = {
+    $rateChar: $(".rate-char"),
+    $rateComment: $("#rating-comment"),
+    $rating: $("#rating"),
+
+    initRateEvent: function(){
+      var that = this;
+      this.$rateChar.on("mouseover", function(){
+        var currentIndex = $(this).data("index");
+        var selectedRating = $(".rate-char").slice(0, currentIndex + 1);
+        $(".rate-char").filter(function(){
+          return parseInt($(this).data("index") || 0) > currentIndex
+        }).map(function(){
+          $(this).text("☆");
+        });
+        selectedRating.text("★");
+      })
+
+      this.$rateChar.on("click", function(){
+        var currentIndex = $(this).data("index");
+        that.$rating.val(currentIndex + 1);
+        that.$rateComment.removeClass("d-none");
+      });
+    }
+  }
+
+  $(function(){
+    App.Teacher.initRateEvent();
+  })

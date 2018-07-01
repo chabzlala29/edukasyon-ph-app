@@ -1,0 +1,14 @@
+%ul.list-group
+  - ratings.each do |rating|
+    %li.list-group-item
+      %p
+        %strong= rating.user.email
+        says:
+        %small.text-muted= "(#{ distance_of_time_in_words(rating.created_at, Time.zone.now)})"
+      %span.text-muted
+        %small= rating.comment
+      - rating.rating.times do
+        %span.text-warning ★
+      - rating.remaining_rating.times do
+        %span.text-warning ☆
+      %small.ml-4.text-muted

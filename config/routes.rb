@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :courses, only: [:index, :show] do
-    resources :teachers, only: [:show], module: :courses
+    resources :teachers, only: [:show], module: :courses do
+      resources :ratings, only: [:create], module: :teachers
+    end
   end
 
   namespace :admin do

@@ -20,6 +20,7 @@
         %strong Edukasyon Courses
         - if is_admin_page?
           %span.ml-3 Admin
+      = link_to "Logout", destroy_user_session_path, class: "btn btn-sm btn-danger mr-2", method: :delete
       - unless is_admin_page?
         = link_to "Go to Admin", [:admin, :courses], class: "btn btn-sm btn-light mr-2"
         %form.form-inline.mt-2.mt-md-0.mr-2

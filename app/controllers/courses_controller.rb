@@ -7,5 +7,6 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @ratings = Rating.where(teacher_id: @course.teacher_ids)
   end
 end

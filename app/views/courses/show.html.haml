@@ -16,21 +16,20 @@
       %img.card-img-top.img-fluid{:alt => "", :src => "http://placehold.it/900x400"}/
       .card-body
         %h3.card-title= @course.name
-        %h4 $24.99
-        %p.card-text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!
-        %span.text-warning ★ ★ ★ ★ ☆
-        4.0 stars
+        %p.card-text= @course.description.html_safe
+        %p.card-text= "Room: #{@course.room}"
     .card.card-outline-secondary.my-4
       .card-header
-        Product Reviews
+        Reviews for Instructors:
       .card-body
-        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.
-        %small.text-muted Posted by Anonymous on 3/1/17
-        %hr/
-        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.
-        %small.text-muted Posted by Anonymous on 3/1/17
-        %hr/
-        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.
-        %small.text-muted Posted by Anonymous on 3/1/17
-        %hr/
-        %a.btn.btn-success{:href => "#"} Leave a Review
+        - @ratings.each do |rating|
+          %p
+            = rating.comment
+
+            - rating.rating.times do
+              %span.text-warning ★
+            - rating.remaining_rating.times do
+              %span.text-warning ☆
+
+          %small.text-muted= "Posted by #{rating.user.email} (#{distance_of_time_in_words(rating.created_at, Time.zone.now)} ago)"
+          %hr/
