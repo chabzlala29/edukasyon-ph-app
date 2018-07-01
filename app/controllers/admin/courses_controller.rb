@@ -3,14 +3,21 @@ module Admin
     before_action :set_course, only: [:edit, :update, :destroy]
 
     def index
-      @courses = Course.all.page params[:page]
+      @courses = Course.all.order(updated_at: :desc).page params[:page]
     end
 
     def edit
       render layout: false
     end
 
+    def new
+      @course = Course.new
+      render layout: false
+    end
+
     def create
+      @course = Course.new(course_params)
+      @saved = @course.save
     end
 
     def update

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :courses, only: [:index, :show]
 
   namespace :admin do
-    resources :courses, only: [:index, :edit, :create, :update, :destroy]
+    resources :courses, only: [:index, :edit, :new, :create, :update, :destroy]
   end
 
   root to: "courses#index"

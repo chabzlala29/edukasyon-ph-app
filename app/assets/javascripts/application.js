@@ -18,3 +18,7 @@
 //= require bootstrap
 //= require cable
 //= require modal
+
+App.colorizeHelpInline = function(){
+  $(".form-group").find(".help-inline").addClass("text-danger");
+}

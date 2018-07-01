@@ -31,7 +31,7 @@ App.Modal = {
           }
         })
         input.closest('.control-group, .form-group').addClass('error');
-        input.parent().append('<span class="help-inline">' + $.map(messages, function(m){ return m.charAt(0).toUpperCase() + m.slice(1) }).join('<br />') + '</span>');
+        input.parent().append('<span class="help-inline text-danger">' + $.map(messages, function(m){ return m.charAt(0).toUpperCase() + m.slice(1) }).join('<br />') + '</span>');
       })
     }
   },
