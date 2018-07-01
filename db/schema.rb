@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_30_110113) do
+ActiveRecord::Schema.define(version: 2018_07_01_075002) do
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.string "summary"
+    t.text "description"
+    t.integer "parent_id"
+    t.string "room"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_courses_on_parent_id"
+  end
+
+  create_table "courses_teachers", id: false, force: :cascade do |t|
+    t.integer "teacher_id", null: false
+    t.integer "course_id", null: false
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "title"
+    t.string "firstname"
+    t.string "lastname"
+    t.integer "gender"
+    t.string "degree"
+    t.date "start_date"
+    t.string "school_graduated"
+    t.text "major_accomplishments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
