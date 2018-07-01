@@ -1,4 +1,4 @@
-- unless params[:controller].match(/admin\//)
+- unless is_admin_page?
   %footer.text-muted
     .container
       %p.float-right

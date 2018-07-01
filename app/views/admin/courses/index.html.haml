@@ -15,7 +15,7 @@
         %td= course.room
         %td
           .btn-group
-            = link_to "Edit", [:edit, :admin, course], class: "btn btn-outline-secondary btn-sm br-0"
+            = link_to_modal "Edit", [:edit, :admin, course], class: "btn btn-outline-secondary btn-sm br-0"
             = link_to "Delete", "/admin/courses/#{course.id}", class: "btn btn-outline-secondary btn-sm bl-0", method: :delete, data: { confirm: "Are you sure?" }
 
 = paginate @courses

@@ -46,6 +46,7 @@ gem 'devise'
 
 # pagination
 gem "kaminari"
+gem 'simple_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
