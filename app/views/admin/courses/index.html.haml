@@ -1,0 +1,21 @@
+%table.table
+  %thead.thead-dark
+    %tr
+      %th{:scope => "col"} #
+      %th{:scope => "col"} Class Name
+      %th{:scope => "col"} Summary
+      %th{:scope => "col"} Room
+      %th{:scope => "col"} Room
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %th{:scope => "row"}= "C#{course.id}"
+        %td= course.name
+        %td= course.summary
+        %td= course.room
+        %td
+          .btn-group
+            = link_to "Edit", [:edit, :admin, course], class: "btn btn-outline-secondary btn-sm br-0"
+            = link_to "Delete", "/admin/courses/#{course.id}", class: "btn btn-outline-secondary btn-sm bl-0", method: :delete, data: { confirm: "Are you sure?" }
+
+= paginate @courses
