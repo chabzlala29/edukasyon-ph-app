@@ -13,7 +13,7 @@ Course.delete_all
   course = Course.create(
     name: FFaker::Education.major,
     summary: FFaker::Lorem.sentence,
-    description: FFaker::HTMLIpsum.body,
+    description: FFaker::Lorem.paragraph,
     room: FFaker::Company.name
   )
 
@@ -25,7 +25,7 @@ Course.delete_all
     degree: FFaker::Education.degree,
     start_date: Time.at(Time.now + rand * (Time.local(2000, 1, 1).to_f - Time.now.to_f)),
     school_graduated: FFaker::Education.school,
-    major_accomplishments: FFaker::HTMLIpsum.body
+    major_accomplishments: FFaker::Lorem.paragraph
   )
 
   teacher.courses << course

@@ -1,0 +1,12 @@
+var $form = $(".course-form").find("form");
+
+var data = $form.serializeArray().reduce(function(map, item){
+  map[item.name] = item.value;
+  return map;
+});
+
+<% if @saved %>
+  window.location.href = "<%= admin_courses_path %>"
+<% else %>
+  $form.renderFormErrors("course", <%= @course.errors.to_json.html_safe %>)
+<% end %>

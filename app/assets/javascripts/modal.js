@@ -3,6 +3,39 @@ App.Modal = {
    * should be defined in routes as POST, otherwise GET
    */
 
+  setupAjaxError: function(){
+    $.fn.clearFormErrors = function(){
+      this.find('.control-group, .form-group').removeClass('error');
+      this.find('span.help-inline').remove();
+    }
+
+    $.fn.clearFormFields = function(){
+      this.find(':input', '.simple_form')
+        .not(':button, :submit, :reset, :hidden')
+        .val('')
+        .removeAttr('checked')
+        .removeAttr('selected')
+    }
+
+    $.fn.renderFormErrors = function(model_name, errors){
+      var form = this;
+      this.clearFormErrors();
+
+      $.each(errors, function(field, messages){
+        var input = form.find('input, select, textarea').filter(function(){
+          var name = $(this).attr('name')
+          if (name) {
+            return name.match(new RegExp(model_name + '\\[' + field + '\\(?'));
+          } else {
+            return false;
+          }
+        })
+        input.closest('.control-group, .form-group').addClass('error');
+        input.parent().append('<span class="help-inline">' + $.map(messages, function(m){ return m.charAt(0).toUpperCase() + m.slice(1) }).join('<br />') + '</span>');
+      })
+    }
+  },
+
   openModal: function(target, link, backdrop, keyboard, $form = null) {
     $modal = $(target || "#modal");
     if ($form == null) {
@@ -46,4 +79,5 @@ App.Modal = {
 
 jQuery(function(){
   App.Modal.initModal();
+  App.Modal.setupAjaxError();
 });

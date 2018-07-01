@@ -1,11 +1,38 @@
-.modal-dialog
+.modal-dialog.course-form
   .modal-content
     .modal-header
-      %h5.modal-title Modal title
-      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-        %span{"aria-hidden" => "true"} ×
+      %h5.modal-title
+        - if @course.persisted?
+          = "Update Course"
+        - else
+          = "New Course"
+      %button.close{"data-dismiss" => "modal", :type => "button"}
+        %span ×
     .modal-body
-      %h1 Hello World!
+      = simple_form_for [:admin, @course], authenticity_token: true, remote: true do |f|
+        = f.input :name
+        = f.input :summary
+        = f.input :description
+        = f.input :room
+        = f.submit "Save", class: "d-none"
     .modal-footer
       %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-      %button.btn.btn-primary{:type => "button"} Save changes
+      %button.btn.btn-primary.save-course{:type => "button"} Save changes
+
+:javascript
+  App.Admin = {
+    $saveButton: $(".course-form").find(".save-course"),
+    $form: $(".course-form").find("form"),
+
+    initializeEvents: function(){
+      var that = this;
+
+      this.$saveButton.on("click", function(){
+        that.$form.find("input[type='submit']").click();
+      });
+    }
+  }
+
+  $(function(){
+    App.Admin.initializeEvents();
+  });
