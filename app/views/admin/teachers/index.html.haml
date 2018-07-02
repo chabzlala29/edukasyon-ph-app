@@ -10,7 +10,6 @@
         %th{:scope => "col"} #
         %th{:scope => "col"} Name
         %th{:scope => "col"} Degree
-        %th{:scope => "col"} Start Date
         %th{:scope => "col"} School Graduated
         %th{:scope => "col"}
     %tbody
@@ -19,7 +18,6 @@
           %th{:scope => "row"}= "C#{teacher.id}"
           %td= teacher.name
           %td= teacher.degree
-          %td= teacher.start_date
           %td= teacher.school_graduated
           %td
             .btn-group
