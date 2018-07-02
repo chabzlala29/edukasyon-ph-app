@@ -1,4 +1,4 @@
-# Edukasyon Classes App
+# Edukasyon Courses App
 
 The best course search site with instructor reviews.
 
