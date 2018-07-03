@@ -29,57 +29,6 @@
       %button.btn.btn-primary.save-course{:type => "button"} Save changes
 
 :javascript
-  App.Admin = {
-    $saveButton: $(".course-form").find(".save-course"),
-    $form: $(".course-form").find("form"),
-    $teachersSelect: $(".course-form").find("#teachers"),
-    $addInsBtn: $(".course-form").find(".add-instructor"),
-    $teachersList: $(".course-form").find(".teachers"),
-    $removeInstructor: $(".course-form").find(".remove-instructor"),
-    teachers: [],
-
-    renderTeachers: function(){
-      var that = this;
-      that.$teachersSelect.find("option").each(function(){
-        if (that.teachers.includes({ id: $(this).val(), name: $(this).text() })) {
-          $(this).hide();
-         } else {
-           $(this).show();
-         }
-      });
-
-     var teachersListHTML = that.teachers.map(function(item){
-       return `<span class='badge badge-secondary ml-2' data-teacher-id='${item.id}' data-name='${item.name}'>${item.name} <span class="remove-instructor">&times</span></span>`
-     }).join("");
-
-     that.$teachersList.html(teachersListHTML);
-    },
-
-    initializeEvents: function(){
-      var that = this;
-
-      this.$saveButton.on("click", function(){
-        that.$form.find("input[type='submit']").click();
-      });
-
-     this.$addInsBtn.on("click", function(){
-       var selectedTeacher = { id: that.$teachersSelect.val(), name: that.$teachersSelect.find("option:selected").text() };
-
-       if(!that.teachers.includes(selectedTeacher)) that.teachers.push(selectedTeacher);
-
-       that.renderTeachers();
-
-       $(".course-form").on("click", ".remove-instructor", function(){
-         var teacherId = $(this).parent().data("teacher-id");
-         var teacherName = $(this).parent().data("name");
-         that.teachers.splice(that.teachers.indexOf({id: teacherId, name: teacherName}));
-
-         that.renderTeachers();
-       });
-     });
-    }
-  }
-
   $(function(){
-    App.Admin.initializeEvents();
+    App.Admin.Courses.initializeEvents();
   });

@@ -17,6 +17,8 @@
 //= require bootstrap
 //= require cable
 //= require modal
+//= require admin
+//= require teachers
 
 App.colorizeHelpInline = function(){
   $(".form-group").find(".help-inline").addClass("text-danger");
