@@ -2,7 +2,7 @@
   .col-lg-4
     %h5.text-muted Available Instructors
 
-    %ul.list-group.mb-3{ data: { spy: "affix", "offset-top": "197" }}
+    %ul.list-group.mb-3
       - @course.teachers.each do |teacher|
         %li.list-group-item.d-flex.lh-condensed
           %img.pr-2.float-left{ src: "http://via.placeholder.com/70x70" }
@@ -31,14 +31,17 @@
       .card-header
         Reviews for Instructors:
       .card-body
-        - @ratings.each do |rating|
-          %p
-            = rating.comment
+        - if @ratings.any?
+          - @ratings.each do |rating|
+            %p
+              = rating.comment
 
-            - rating.rating.times do
-              %span.text-warning ★
-            - rating.remaining_rating.times do
-              %span.text-warning ☆
+              - rating.rating.times do
+                %span.text-warning ★
+              - rating.remaining_rating.times do
+                %span.text-warning ☆
 
-          %small.text-muted= "Posted by #{rating.user.email} (#{distance_of_time_in_words(rating.created_at, Time.zone.now)} ago)"
-          %hr/
+            %small.text-muted= "Posted by #{rating.user.email} (#{distance_of_time_in_words(rating.created_at, Time.zone.now)} ago)"
+            %hr/
+        - else
+          %p No Reviews yet.

@@ -45,3 +45,14 @@ footer p {
   font-size: 25px;
   cursor: pointer;
 }
+
+.ratings-content {
+  .remove-rating { cursor: pointer; }
+}
+
+// Admin Courses
+.course-form {
+  .remove-instructor {
+    cursor: pointer;
+  }
+}

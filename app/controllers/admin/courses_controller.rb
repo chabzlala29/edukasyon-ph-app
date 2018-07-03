@@ -1,6 +1,7 @@
 module Admin
   class CoursesController < AdminController
     before_action :set_course, only: [:edit, :update, :destroy]
+    before_action :set_teachers, only: [:edit, :new]
 
     def index
       @q = Course.ransack(params[:q])
@@ -36,6 +37,10 @@ module Admin
 
     def set_course
       @course = Course.find(params[:id])
+    end
+
+    def set_teachers
+      @teachers = Teacher.all.order(:firstname)
     end
 
     def course_params

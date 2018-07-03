@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    resources :ratings, only: [:destroy]
+  end
+
   namespace :admin do
     resources :courses
     resources :teachers

@@ -1,14 +1,21 @@
-%ul.list-group
-  - ratings.each do |rating|
-    %li.list-group-item
-      %p
-        %strong= rating.user.email
-        says:
-        %small.text-muted= "(#{ distance_of_time_in_words(rating.created_at, Time.zone.now)})"
-      %span.text-muted
-        %small= rating.comment
-      - rating.rating.times do
-        %span.text-warning ★
-      - rating.remaining_rating.times do
-        %span.text-warning ☆
-      %small.ml-4.text-muted
+- if ratings.any?
+  %ul.list-group
+    - ratings.each do |rating|
+      %li.list-group-item
+        %p.d-flex.justify-content-between
+          %span
+            %strong= rating.user.email
+            says:
+            %small.text-muted= "(#{ distance_of_time_in_words(rating.created_at, Time.zone.now)})"
+          %span.remove-rating.h5.text-muted{ data: { "rating-id": rating.id } } &times;
+        %span.text-muted
+          %small= rating.comment
+        - rating.rating.times do
+          %span.text-warning ★
+        - rating.remaining_rating.times do
+          %span.text-warning ☆
+        %small.ml-4.text-muted
+- else
+  %p
+    %small.text-muted No ratings yet.
+

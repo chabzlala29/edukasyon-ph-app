@@ -1,0 +1,4 @@
+$(".ratings-content").find("div.user-ratings").html("<%= j render("courses/teachers/user_ratings", ratings: @ratings) %>");
+$(".ratings-content").find("div.rating-form").html("<%= j render("courses/teachers/rating_form", teacher: @teacher, course: @course) %>").removeClass("d-none");
+
+App.Teacher.initEvents();
