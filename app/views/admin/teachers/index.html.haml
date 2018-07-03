@@ -1,6 +1,6 @@
 = search_form_for @q, url: [:admin, :teachers], class: "form-inline mt-2 mt-md-0 mr-2" do |f|
   = link_to_modal "New Teacher", [:new, :admin, :teacher], class: "btn btn-outline-success mr-auto mr-2"
-  = f.text_field :name_cont, class: "form-control mr-sm-2", placeholder: "Search Instructor..."
+  = f.text_field :name_or_degree_or_school_graduated_cont, class: "form-control mr-sm-2", placeholder: "Search Instructor..."
 %hr
 
 - if @teachers.any?
