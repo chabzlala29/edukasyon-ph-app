@@ -9,29 +9,7 @@
       %button.close{"data-dismiss" => "modal", :type => "button"}
         %span ×
     .modal-body
-      = simple_form_for [:admin, @course], authenticity_token: true, remote: true do |f|
-        = f.input :name
-        = f.input :summary
-        = f.input :description
-        = f.input :room
-        = label_tag "teachers", "Instructors:"
-        .teachers-list
-          - @course_teachers.each do |teacher|
-            %input{ name: "course[teachers_ids][]", type: "hidden", multiple: true, value: teacher.id }
-        - if @course_teachers.blank?
-          %p
-            %small.text-muted *Please add instructors
-        %p.teachers
-          - @course_teachers.each do |teacher|
-            %span.badge.badge-secondary.ml-2{ data: { "teacher-id": teacher.id, name: teacher.name } }
-              = teacher.name
-              %span.remove-instructor &times;
-        .form-group.row
-          .col-md-9
-            = select_tag "teachers", options_from_collection_for_select(@teachers, "id", "name", @teachers.first.id), class: "form-control"
-          .col-md-3
-            %button.btn.btn-success.form-control.add-instructor{ type: "button" } Add
-        = f.submit "Save", class: "d-none"
+      = render "course_form"
     .modal-footer
       %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
       %button.btn.btn-primary.save-course{:type => "button"} Save changes
