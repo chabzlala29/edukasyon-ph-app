@@ -1,6 +1,6 @@
 module Courses
   module Teachers
-    class RatingsController < ApplicationController
+    class RatingsController < MainController
       def create
         @teacher = Teacher.find(params[:teacher_id])
         @teacher.ratings.create(

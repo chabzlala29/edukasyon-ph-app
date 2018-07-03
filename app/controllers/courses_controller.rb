@@ -1,8 +1,8 @@
-class CoursesController < ApplicationController
+class CoursesController < MainController
   before_action :authenticate_user!
 
   def index
-    @courses = Course.all
+    @courses = @q.result.order(updated_at: :desc).page params[:page]
   end
 
   def show

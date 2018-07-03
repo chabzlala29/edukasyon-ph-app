@@ -1,5 +1,5 @@
 module Courses
-  class TeachersController < ApplicationController
+  class TeachersController < MainController
     def show
       @course = Course.find(params[:course_id])
       @teacher = @course.teachers.find(params[:id])

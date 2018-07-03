@@ -28,9 +28,7 @@
       - else
         - if current_user.admin?
           = link_to "Go to Admin", [:admin, :courses], class: "btn btn-sm btn-light mr-2"
-        %form.form-inline.mt-2.mt-md-0.mr-2
-          %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "text"}/
-          %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search Class
+        = render "layouts/search_form"
       = link_to "Logout", destroy_user_session_path, class: "btn btn-sm btn-danger mr-2", method: :delete
       %button.navbar-toggler.collapsed{"aria-controls" => "navbarHeader", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarHeader", "data-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
