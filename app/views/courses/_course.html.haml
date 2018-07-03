@@ -1,0 +1,9 @@
+.col-md-4
+  .card.mb-4.box-shadow
+    .card-body
+      %h5= course.name
+      %p.card-text= course.summary
+      .d-flex.justify-content-between.align-items-center
+        .btn-group
+          = link_to "View", course, class: "btn btn-sm btn-outline-secondary"
+        %small.text-muted= course.room
