@@ -15,9 +15,17 @@
         = f.input :description
         = f.input :room
         = label_tag "teachers", "Instructors:"
-        %p
-          %small.text-muted *Please add instructors
+        .teachers-list
+          - @course_teachers.each do |teacher|
+            %input{ name: "course[teachers_ids][]", type: "hidden", multiple: true, value: teacher.id }
+        - if @course_teachers.blank?
+          %p
+            %small.text-muted *Please add instructors
         %p.teachers
+          - @course_teachers.each do |teacher|
+            %span.badge.badge-secondary.ml-2{ data: { "teacher-id": teacher.id, name: teacher.name } }
+              = teacher.name
+              %span.remove-instructor &times;
         .form-group.row
           .col-md-9
             = select_tag "teachers", options_from_collection_for_select(@teachers, "id", "name", @teachers.first.id), class: "form-control"

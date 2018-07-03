@@ -20,11 +20,13 @@ module Admin
     def create
       @course = Course.new(course_params)
       @saved = @course.save
+      @course.teacher_ids = params[:course][:teachers_ids]
     end
 
     def update
       @course.assign_attributes(course_params)
       @saved = @course.save
+      @course.teacher_ids = params[:course][:teachers_ids]
     end
 
     def destroy
@@ -41,6 +43,7 @@ module Admin
 
     def set_teachers
       @teachers = Teacher.all.order(:firstname)
+      @course_teachers = @course.teachers
     end
 
     def course_params
