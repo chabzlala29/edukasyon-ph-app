@@ -19,10 +19,9 @@
   .navbar.navbar-dark.bg-dark.box-shadow
     .container.d-flex.justify-content-between
       = link_to :courses, class: "navbar-brand d-flex align-items-center mr-auto" do
-        %strong Edukasyon Courses
-        - if is_admin_page?
-          %span.ml-3 Admin
+        = logo_tag height: "50", class: "my-0"
       - if is_admin_page?
+        %small.mr-3.mt-2.text-light Admin Page
         = link_to "Teachers", [:admin, :teachers], class: "btn btn-sm btn-light mr-2 #{'active' if params[:controller].match(/teachers/)}"
         = link_to "Courses", [:admin, :courses], class: "btn btn-sm btn-light mr-2 #{'active' if params[:controller].match(/courses/)}"
       - else

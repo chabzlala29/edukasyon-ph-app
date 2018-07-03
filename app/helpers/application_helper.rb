@@ -7,4 +7,8 @@ module ApplicationHelper
     options[:class] = ["modal-link", options[:class]].compact.join(" ")
     link_to title, url, options
   end
+
+  def logo_tag(options = {})
+    image_tag "edukasyon-logo.png", height: options[:height] || "72", class: "edukasyon-logo #{options[:class]}"
+  end
 end
