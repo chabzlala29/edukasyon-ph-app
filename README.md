@@ -55,7 +55,7 @@ http://localhost:3000
 
 * **Charles Pobre** - *Initial work* - [chabzlala29](https://github.com/chabzlala29)
 
-## Acknowledgments
+## Notes
 
 * Edukasyon PH
 * Job Application Exam
