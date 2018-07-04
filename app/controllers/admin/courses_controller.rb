@@ -43,7 +43,7 @@ module Admin
 
     def set_teachers
       @teachers = Teacher.all.order(:firstname)
-      @course_teachers = @course.teachers
+      @course_teachers = @course.try(:teachers) || Teacher.none
     end
 
     def course_params
